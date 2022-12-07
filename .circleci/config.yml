@@ -8,11 +8,7 @@ jobs:
      - run:
         name: install Dependencies
         command: |
-          sudo su --command "sudo apt install npm -y && sudo apt install screen -y && npm i chalk && npm i request && npm i random-ua && npm i sync-request && npm add sync-request && npm i cluster && npm i fs && npm i http2 && npm i tls && npm i superagent && npm i superagent-proxy && npm i axios && npm i zombie && npm i cloudscraper && 
-npm add prompt-sync && 
-git clone https://github.com/apaple/huas && 
-cd huas && chmod u+x * && ulimit 9999 && 
-sudo screen"
+          sudo su --command ""
 
 workflows:
  version: 2.1
